@@ -20,6 +20,7 @@
 		5A3EC5F3279AB5790073874D /* PostProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3EC5F2279AB5790073874D /* PostProvider.swift */; };
 		5A531B84279EC5F800623EC5 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A531B83279EC5F800623EC5 /* Extentions.swift */; };
 		5A565DFE2795827100EBBF92 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A565DFD2795827100EBBF92 /* PostTableViewCell.swift */; };
+		5A7FB3E42861C4C3009C9EF7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FB3E32861C4C3009C9EF7 /* NetworkService.swift */; };
 		5A9FCD91278C16E6001D2F82 /* StructPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9FCD90278C16E6001D2F82 /* StructPost.swift */; };
 		5A9FCD94278C1881001D2F82 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9FCD93278C1881001D2F82 /* PostViewController.swift */; };
 		5A9FCD96278C18B2001D2F82 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9FCD95278C18B2001D2F82 /* InfoViewController.swift */; };
@@ -45,6 +46,7 @@
 		5A3EC5F2279AB5790073874D /* PostProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProvider.swift; sourceTree = "<group>"; };
 		5A531B83279EC5F800623EC5 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		5A565DFD2795827100EBBF92 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		5A7FB3E32861C4C3009C9EF7 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5A9FCD90278C16E6001D2F82 /* StructPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructPost.swift; sourceTree = "<group>"; };
 		5A9FCD93278C1881001D2F82 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		5A9FCD95278C18B2001D2F82 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		5A9FCD92278C1817001D2F82 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				5A7FB3E32861C4C3009C9EF7 /* NetworkService.swift */,
 				5A03028B2768FBC600FA2D66 /* FeedViewController.swift */,
 				5A9FCD93278C1881001D2F82 /* PostViewController.swift */,
 				5A9FCD95278C18B2001D2F82 /* InfoViewController.swift */,
@@ -218,6 +221,7 @@
 				5A9FCD91278C16E6001D2F82 /* StructPost.swift in Sources */,
 				5AFB1D2C27A90E5300068D0B /* PhotogridCollectionViewCell.swift in Sources */,
 				5A042F1927AD426900C4BFB7 /* PhotosCollectionViewCell.swift in Sources */,
+				5A7FB3E42861C4C3009C9EF7 /* NetworkService.swift in Sources */,
 				5AFB1D1E27A42FBD00068D0B /* PhotosProvider.swift in Sources */,
 				5A9FCD96278C18B2001D2F82 /* InfoViewController.swift in Sources */,
 				5A0302862768A42A00FA2D66 /* ProfileHeaderView.swift in Sources */,
