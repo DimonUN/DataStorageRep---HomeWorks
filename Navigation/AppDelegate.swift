@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.selectedIndex = 0
 
         let appConfiguration = AppConfiguration.allCases.randomElement()
-        NetworkService.goToURL(with: appConfiguration?.rawValue)
+        NetworkService.request(to: appConfiguration?.rawValue)
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()

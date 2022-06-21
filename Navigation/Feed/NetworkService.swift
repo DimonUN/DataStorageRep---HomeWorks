@@ -8,12 +8,12 @@
 import Foundation
 
 struct NetworkService {
-    static func goToURL(with string: String?) {
-        guard string != nil else {
+    static func request(to url: String?) {
+        guard url != nil else {
             print("No data to request")
             return
         }
-            if let url = URL(string: string!) {
+            if let url = URL(string: url!) {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data {
                     let myDecodedString = String(data: data, encoding: .utf8)
@@ -21,7 +21,7 @@ struct NetworkService {
                 }
                 if let httpResponse = response as? HTTPURLResponse {
                     print("===StatusCode is: \(httpResponse.statusCode)")
-                    print("===AllHeaderFields is \(httpResponse.allHeaderFields)")
+                    print("===AllHeaderFields is: \(httpResponse.allHeaderFields)")
                    }
                 if let error = error {
                     print("===Error is: \(error.localizedDescription), \n\(error)")
