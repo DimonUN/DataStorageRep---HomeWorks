@@ -35,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         tabBarController.setViewControllers([feedNavigationController, profileNavigationController ], animated: true)
         tabBarController.selectedIndex = 0
+
+        let appConfiguration = AppConfiguration.allCases.randomElement()
+        NetworkService.request(to: appConfiguration?.rawValue)
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
