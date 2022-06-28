@@ -17,6 +17,7 @@
 		5A140E322754C0EE002327CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A140E312754C0EE002327CE /* ViewController.swift */; };
 		5A140E372754C0EE002327CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A140E362754C0EE002327CE /* Assets.xcassets */; };
 		5A140E3A2754C0EE002327CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A140E382754C0EE002327CE /* LaunchScreen.storyboard */; };
+		5A231521286B44ED00AF0892 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A231520286B44ED00AF0892 /* InfoViewController.swift */; };
 		5A3E6874286AEC52002167E5 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3E6873286AEC52002167E5 /* Planet.swift */; };
 		5A3E6876286AF34B002167E5 /* Residents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3E6875286AF34B002167E5 /* Residents.swift */; };
 		5A3EC5F3279AB5790073874D /* PostProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3EC5F2279AB5790073874D /* PostProvider.swift */; };
@@ -25,7 +26,6 @@
 		5A7FB3E42861C4C3009C9EF7 /* NetworkServiceOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7FB3E32861C4C3009C9EF7 /* NetworkServiceOld.swift */; };
 		5A9FCD91278C16E6001D2F82 /* StructPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9FCD90278C16E6001D2F82 /* StructPost.swift */; };
 		5A9FCD94278C1881001D2F82 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9FCD93278C1881001D2F82 /* PostViewController.swift */; };
-		5A9FCD96278C18B2001D2F82 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9FCD95278C18B2001D2F82 /* InfoViewController.swift */; };
 		5AA95D5827AC1EAC00A0D22C /* FirstSectionOfTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA95D5727AC1EAC00A0D22C /* FirstSectionOfTableView.swift */; };
 		5AEA64B02865CBE200480446 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA64AF2865CBE200480446 /* NetworkService.swift */; };
 		5AEA64B22865D41300480446 /* JSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA64B12865D41300480446 /* JSONModel.swift */; };
@@ -47,6 +47,7 @@
 		5A140E362754C0EE002327CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A140E392754C0EE002327CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A140E3B2754C0EE002327CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A231520286B44ED00AF0892 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		5A3E6873286AEC52002167E5 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 		5A3E6875286AF34B002167E5 /* Residents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Residents.swift; sourceTree = "<group>"; };
 		5A3EC5F2279AB5790073874D /* PostProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProvider.swift; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		5A7FB3E32861C4C3009C9EF7 /* NetworkServiceOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceOld.swift; sourceTree = "<group>"; };
 		5A9FCD90278C16E6001D2F82 /* StructPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructPost.swift; sourceTree = "<group>"; };
 		5A9FCD93278C1881001D2F82 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
-		5A9FCD95278C18B2001D2F82 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoViewController.swift; path = "/Users/dmitriynikonorov/Desktop/Netology HW/6) Хранение данных/iosid-2 с URLSessionConfiguration/Navigation/Feed/InfoViewController.swift"; sourceTree = "<absolute>"; };
 		5AA95D5727AC1EAC00A0D22C /* FirstSectionOfTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionOfTableView.swift; sourceTree = "<group>"; };
 		5AEA64AF2865CBE200480446 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5AEA64B12865D41300480446 /* JSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONModel.swift; sourceTree = "<group>"; };
@@ -95,7 +95,6 @@
 		5A140E212754C0EE002327CE = {
 			isa = PBXGroup;
 			children = (
-				5A3E6877286B434D002167E5 /* Models */,
 				5A140E2C2754C0EE002327CE /* Navigation */,
 				5A140E2B2754C0EE002327CE /* Products */,
 			);
@@ -112,6 +111,7 @@
 		5A140E2C2754C0EE002327CE /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				5A3E6877286B434D002167E5 /* Models */,
 				5A0302842768A3DA00FA2D66 /* Profile */,
 				5A9FCD92278C1817001D2F82 /* Feed */,
 				5A140E2D2754C0EE002327CE /* AppDelegate.swift */,
@@ -140,7 +140,7 @@
 				5A7FB3E32861C4C3009C9EF7 /* NetworkServiceOld.swift */,
 				5A03028B2768FBC600FA2D66 /* FeedViewController.swift */,
 				5A9FCD93278C1881001D2F82 /* PostViewController.swift */,
-				5A9FCD95278C18B2001D2F82 /* InfoViewController.swift */,
+				5A231520286B44ED00AF0892 /* InfoViewController.swift */,
 				5AEA64AF2865CBE200480446 /* NetworkService.swift */,
 			);
 			path = Feed;
@@ -247,8 +247,8 @@
 				5A042F1927AD426900C4BFB7 /* PhotosCollectionViewCell.swift in Sources */,
 				5A7FB3E42861C4C3009C9EF7 /* NetworkServiceOld.swift in Sources */,
 				5AFB1D1E27A42FBD00068D0B /* PhotosProvider.swift in Sources */,
-				5A9FCD96278C18B2001D2F82 /* InfoViewController.swift in Sources */,
 				5A0302862768A42A00FA2D66 /* ProfileHeaderView.swift in Sources */,
+				5A231521286B44ED00AF0892 /* InfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,3 +1,12 @@
+//
+//  InfoViewController.swift
+//  Navigation
+//
+//  Created by Дмитрий Никоноров on 28.06.2022.
+//
+
+import Foundation
+
 import UIKit
 
 final class InfoViewController: UIViewController {
