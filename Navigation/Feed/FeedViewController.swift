@@ -1,8 +1,7 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    
-    
+
     var networkRequest: UIButton = {
         let networkRequest = UIButton(type: .system)
         networkRequest.toAutoLayout()
@@ -10,7 +9,6 @@ class FeedViewController: UIViewController {
         networkRequest.setTitle("Create request", for: .normal)
         networkRequest.setTitleColor(.white, for: .normal)
         networkRequest.layer.cornerRadius = 20
-        
         networkRequest.addTarget(
             self,
             action: #selector(buttonAction),
@@ -41,6 +39,7 @@ class FeedViewController: UIViewController {
     }
 
     @objc func buttonAction(sender: UIButton) {
-        let _ = NetworkService()
+        let infoViewController = InfoViewController()
+        navigationController?.pushViewController(infoViewController, animated: true)
     }
 }
