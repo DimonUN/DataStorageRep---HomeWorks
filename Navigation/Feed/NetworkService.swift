@@ -2,42 +2,47 @@
 //  NetworkService.swift
 //  Navigation
 //
-//  Created by Дмитрий Никоноров on 21.06.2022.
+//  Created by Дмитрий Никоноров on 24.06.2022.
 //
 
 import Foundation
 
-struct NetworkService {
-    static func request(to url: String?) {
-        guard url != nil else {
-            print("No data to request")
-            return
-        }
-            if let url = URL(string: url!) {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data {
-                    let myDecodedString = String(data: data, encoding: .utf8)
-                    print("===My decoded string is: \(String(describing: myDecodedString))")
-                }
-                if let httpResponse = response as? HTTPURLResponse {
-                    print("===StatusCode is: \(httpResponse.statusCode)")
-                    print("===AllHeaderFields is: \(httpResponse.allHeaderFields)")
-                   }
-                if let error = error {
-                    print("===Error is: \(error.localizedDescription), \n\(error)")
-                }
+enum NetworkErrors: Error {
+    case `default`
+    case serverError
+    case parseError
+    case unknownError
+
+}
+
+
+protocol NetworkServiceProtocol {
+    func request(url: URL, completion: @escaping (Result<Data, NetworkErrors>) -> Void)
+}
+
+final class NetworkService {
+    private let mainQueue = DispatchQueue.main
+}
+
+extension NetworkService: NetworkServiceProtocol {
+    func request(url: URL, completion: @escaping (Result<Data, NetworkErrors>) -> Void) {
+
+        let task = URLSession.shared.dataTask(with: url, completionHandler: {
+            data, response, error in
+            guard error == nil else {
+                self.mainQueue.async { completion(.failure(.default)) }
+                return
             }
-            task.resume()
-        } else {
-            print("Cannot create URL")
-        }
+            
+            guard let data = data else {
+                self.mainQueue.async { completion(.failure(.unknownError)) }
+                return
+            }
+
+            self.mainQueue.async {
+                completion(.success(data))
+            }
+        })
+        task.resume()
     }
 }
-
-enum AppConfiguration: String, CaseIterable {
-    case people = "https://swapi.dev/api/people/8"
-    case starships = "https://swapi.dev/api/starships/3"
-    case planets = "https://swapi.dev/api/planets/5"
-//    case error = "https://"
-}
-
