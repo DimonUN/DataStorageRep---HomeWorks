@@ -135,7 +135,7 @@ extension HomeWorkViewController: UICollectionViewDataSource {
             do {
                 let data = try Data(contentsOf: url)
                 cell.setup(data: data)
-                cell.onButtonTaped = { [weak self] in
+                cell.deleteImage = { [weak self] in
                     self?.tapToDelete(url: url)
                 }
             } catch let error {

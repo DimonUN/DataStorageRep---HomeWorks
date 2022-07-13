@@ -21,7 +21,7 @@ class CollectionViewCell: UICollectionViewCell {
         let closeButton = UIButton(type: .system)
         closeButton.tintColor = .black
         closeButton.setImage(UIImage(systemName: "clear.fill"), for: .normal)
-        closeButton.addTarget(self, action: #selector(processTap), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         closeButton.toAutoLayout()
         return closeButton
     }()
@@ -55,9 +55,9 @@ class CollectionViewCell: UICollectionViewCell {
         imageView.image = UIImage(data: data)
     }
     
-    public var onButtonTaped: (() -> Void)?
+    public var deleteImage: (() -> Void)?
 
-    @objc private func processTap(_ sender: UIButton) {
-        onButtonTaped?()
+    @objc private func closeButtonTapped(_ sender: UIButton) {
+        deleteImage?()
     }
 }
