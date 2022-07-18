@@ -8,6 +8,10 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
+
+    //MARK: -Properties
+    public var deleteImage: (() -> Void)?
+
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.contentsGravity = .resizeAspect
@@ -40,6 +44,7 @@ class CollectionViewCell: UICollectionViewCell {
         ])
     }
 
+    //MARK: - Initializer
     override init(frame: CGRect) {
         super.init(frame: .zero)
 
@@ -51,12 +56,11 @@ class CollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func setup(data: Data) {
-        imageView.image = UIImage(data: data)
+    //MARK: - Methods
+    public func setup(imageFrom string: String) {
+        imageView.image = UIImage(named: string)
     }
     
-    public var deleteImage: (() -> Void)?
-
     @objc private func closeButtonTapped(_ sender: UIButton) {
         deleteImage?()
     }
