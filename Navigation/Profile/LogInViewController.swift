@@ -1,13 +1,18 @@
 import UIKit
+import RealmSwift
+
+
+class Credentials: Object {
+    @objc dynamic var login = ""
+    @objc dynamic var password = ""
+}
 
 final class LogInViewController: UIViewController {
-    
-    @objc func tapGesture(_ gesture: UITapGestureRecognizer) {
-        print("Did catch action")
-    }
 
     //MARK: -Setting properties
-    
+    let realm = try! Realm()
+    var items: Results<Credentials>!
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
@@ -21,7 +26,6 @@ final class LogInViewController: UIViewController {
         contentView.toAutoLayout()
         return contentView
     }()
-    
     
     private lazy var logoContentView: UIView = {
         let logoContentView = UIView()
@@ -102,16 +106,20 @@ final class LogInViewController: UIViewController {
     private lazy var loginButton: UIButton = {
         let loginButton = UIButton(type: .custom)
         loginButton.setTitle("Log in", for: .normal)
-        loginButton.toAutoLayout()
         loginButton.setTitleColor(.white, for: .normal)
-        
+        loginButton.setTitleColor(.gray, for: .disabled)
+        loginButton.isEnabled = false
+        loginButton.setBackgroundImage(UIImage(named: "gray_pixel_1"), for: .disabled)
+        loginButton.setBackgroundImage(UIImage(named: "blue_pixel_1"), for: .normal)
+        loginButton.setBackgroundImage(UIImage(named: "blue_pixel_2"), for: .focused)
+        loginButton.setBackgroundImage(UIImage(named: "blue_pixel_2"), for: .highlighted)
         loginButton.layer.cornerRadius = 10.0
-        loginButton.layer.cornerRadius = 10
         loginButton.clipsToBounds = true
-        loginButton.addTarget(self, action: #selector(holdRelease), for: .touchUpInside)
-        loginButton.addTarget(self, action: #selector(holdDown), for: .touchDown)
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        loginButton.toAutoLayout()
         return loginButton
     }()
+
 
     private var imageView: UIImageView = {
         var imageView = UIImageView()
@@ -123,18 +131,26 @@ final class LogInViewController: UIViewController {
 
     
     //MARK: -Setting methods
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        checkCredentials()
     }
 
-    fileprivate func setupUI() {
-        let recognizer = UITapGestureRecognizer()
-        recognizer.addTarget(self, action: #selector(tapGesture))
-        
-        logoContentView.addGestureRecognizer(recognizer)
-        
+    private func checkCredentials() {
+        items = realm.objects(Credentials.self)
+        if items.count != 0 {
+            loginTextField.text = items[0].login
+            passwordTextField.text = items[0].password
+            let profileViewController = ProfileViewController()
+            self.navigationController?.pushViewController(
+                profileViewController,
+                animated: true
+            )
+        }
+    }
+
+    private func setupUI() {
         view.backgroundColor = .red
         view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
@@ -191,6 +207,34 @@ final class LogInViewController: UIViewController {
             imageView.bottomAnchor.constraint(equalTo: loginButton.bottomAnchor)
         ])
     }
+
+        @objc private func loginButtonTapped(_ sender: UIButton) {
+            guard loginTextField.text != nil,
+                    passwordTextField.text != nil else { return }
+
+            items = realm.objects(Credentials.self)
+            guard items.count != 0 else {
+                let credentials = Credentials()
+                credentials.login = loginTextField.text!
+                credentials.password = passwordTextField.text!
+
+                try! realm.write {
+                    realm.add(credentials)
+                }
+                let alert = UIAlertController(title: nil, message: "Пароль и логин сохранены", preferredStyle: .alert)
+                let action = UIAlertAction(
+                    title: "Ок",
+                    style: .default,
+                    handler: { [weak self] _ in
+                    let profileViewController = ProfileViewController()
+                    self?.navigationController?.pushViewController(profileViewController, animated: true)
+
+                })
+                alert.addAction(action)
+                present(alert, animated: true)
+                return
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -220,20 +264,6 @@ final class LogInViewController: UIViewController {
         scrollView.contentOffset = CGPoint.zero
         scrollView.verticalScrollIndicatorInsets = .zero
     }
-
-    @objc func holdRelease(sender: UIButton) {
-        imageView.alpha = 1.0
-    }
-
-    @objc func holdDown(sender: UIButton) {
-        guard loginButton.isSelected || loginButton.isHighlighted else {return}
-        imageView.alpha = 0.8
-        loginTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        
-        let profileVC = ProfileViewController()
-        self.navigationController?.pushViewController(profileVC, animated: true)
-    }
 }
 
 
@@ -242,5 +272,17 @@ extension LogInViewController: UITextFieldDelegate {
         loginTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         return true
+    }
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        items = realm.objects(Credentials.self)
+        guard loginTextField.text != nil,
+                passwordTextField.text != nil else { return }
+
+        guard passwordTextField.text!.count >= 4 else {
+            loginButton.isEnabled = false
+            return
+        }
+        loginButton.isEnabled = true
     }
 }
