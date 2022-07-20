@@ -15,29 +15,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = scene as? UIWindowScene else { return }
         window = UIWindow(windowScene: scene)
 
-        let secondViewController = HomeWorkViewController()
-
-        secondViewController.tabBarItem = UITabBarItem(title: "Collection", image: UIImage(systemName: "table.fill"), tag: 0)
-
-        let navigationAppearance = UINavigationBarAppearance()
-        navigationAppearance.backgroundColor = .systemGray6
-
-        let secondNavigationController = UINavigationController(rootViewController: secondViewController)
-
-        secondNavigationController.navigationBar.scrollEdgeAppearance = navigationAppearance
-
-        let tabBarController = UITabBarController()
-        tabBarController.tabBar.backgroundColor = .systemGray6
-        tabBarController.tabBar.unselectedItemTintColor = .black
-        tabBarController.tabBar.tintColor = .systemBlue
-
-        tabBarController.setViewControllers([secondNavigationController], animated: false)
-
+        let factory = Factory()
+        let loginViewController = factory.createLoginViewController(
+            keyChainService: factory.createKeyChainService(),
+            model: factory.createCredentials(),
+            factory: factory.createFactoryForViewController(),
+            alertService: factory.createAlertService(),
+            state: nil
+        )
+        let settingsViewController = factory.createSettingViewController(
+            factory: factory
+        )
+        let mainNavigationControllerfactory = factory.createMainNavigationController(
+            viewConroller: loginViewController
+        )
+        let settingsNavigationController = factory.createSettingsNavigationController(
+            viewConroller: settingsViewController
+        )
+        let tabBarController = factory.createTabBarController(
+            mainNavigationControllerfactory,
+            settingsNavigationController
+        )
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
-
-
-
     }
     
 
